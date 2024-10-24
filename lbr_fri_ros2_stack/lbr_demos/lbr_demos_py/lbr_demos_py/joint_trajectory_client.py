@@ -20,7 +20,7 @@ class JointTrajectoryClient(Node):
             self.get_logger().info("Waiting for action server to become available...")
         self.get_logger().info("Action server available.")
 
-    def execute(self, positions: list, sec_from_start: int = 15):
+    def execute(self, positions: list, sec_from_start: int = 20):
         if len(positions) != 7:
             self.get_logger().error("Invalid number of joint positions.")
             return
@@ -68,32 +68,48 @@ def main(args: list = None) -> None:
     rclpy.init(args=args)
     joint_trajectory_client = JointTrajectoryClient("joint_trajectory_client")
 
-    # rotate odd joints
-    joint_trajectory_client.get_logger().info("Rotating odd joints.")
-    joint_trajectory_client.execute(
-        [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-        ]
-    )
+    # # rotate odd joints
+    # joint_trajectory_client.get_logger().info("Rotating odd joints.")
+    # joint_trajectory_client.execute(
+    #     [
+    #         1.0,
+    #         0.0,
+    #         1.0,
+    #         0.0,
+    #         1.0,
+    #         0.0,
+    #         1.0,
+    #     ]
+    # )
+
+    # # move to zero position
+    # joint_trajectory_client.get_logger().info("Moving to zero position.")
+    # joint_trajectory_client.execute(
+    #     [
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #         0.0,
+    #     ]
+    # )
 
     # move to zero position
     joint_trajectory_client.get_logger().info("Moving to zero position.")
     joint_trajectory_client.execute(
         [
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            0.619,
+            1.432,
+            -1.61,
+            -1.61,
+            1.433,
+            1.592,
+            -1.256,
         ]
     )
+
+    
 
     rclpy.shutdown()

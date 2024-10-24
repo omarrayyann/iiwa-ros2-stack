@@ -48,7 +48,7 @@
         </link>
 
         <joint name="A1" type="revolute">
-            <origin rpy="0 0 0" xyz="0.0 0.0 0.1475" />
+            <origin rpy="0 0 0" xyz="0.0 0.0 0.15" />
             <parent link="link_0" />
             <child link="link_1" />
             <axis xyz="0.0 0.0 1.0" />
